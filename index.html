@@ -1,0 +1,140 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src= 
+    "https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+            integrity= 
+    "sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script> 
+        <script src= 
+    "https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+            integrity= 
+    "sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>      
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body id="main">
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+             <div class="row my-4">
+            <h1 class="text-center mb-5 col-lg-8" style="padding-left: 350px;">Calculator</h1>
+            <div class="col-lg-4" style="margin-top: 5px;">
+                <button type="button" class="btn btn-dark rounded-circle" onclick="dt()" id="b2"><i class="fa-solid fa-moon"></i></i></button>
+                <button type="button" class="btn btn-light rounded-circle" style="display: none;" onclick="lt()" id="b3"><i class="fa-regular fa-sun"></i></button>
+            </div>
+        </div>
+        <div class="container">
+              <p class="text-center" style="color: red;">*Note: Closing the bracket after trignometry functions is nessecary.</p>
+        </div>
+            <div class="calculator text-center">
+                
+              <table class="table" id="calcu">
+                <tbody>
+                    <tr>
+                        <td colspan="4"><input type="text" id="result" class="form-control mb-4" /></td>
+                        <td><button type="button" id="reset" onclick="clr()" class="btn btn-warning" style="margin-right: 25px;">C</button></td>
+                    </tr>
+                  <tr>
+                    <td><button type="button" value="7" onclick="dis('7')" onkeydown="myFunction(event)" class="btn btn-secondary">7</button></td>
+                    <td><button type="button" value="8" onclick="dis('8')" onkeydown="myFunction(event)" class="btn btn-secondary">8</button></td>
+                    <td><button type="button" value="9" onclick="dis('9')" onkeydown="myFunction(event)" class="btn btn-secondary">9</button></td>
+                    <td><button type="button" value="/" onclick="dis('/')" onkeydown="myFunction(event)" class="btn btn-danger">/</button></td>
+                    <td><button type="button" value="sin(" onclick="dis('sin(')" onkeydown="myFunction(event)" class="btn btn-info">sin()</button></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" value="4" onclick="dis('4')" onkeydown="myFunction(event)" class="btn btn-secondary">4</button></td>
+                    <td><button type="button" value="5" onclick="dis('5')" onkeydown="myFunction(event)" class="btn btn-secondary">5</button></td>
+                    <td><button type="button" value="6" onclick="dis('6')" onkeydown="myFunction(event)" class="btn btn-secondary">6</button></td>
+                    <td><button type="button" value="*" onclick="dis('*')" onkeydown="myFunction(event)" class="btn btn-danger">*</button></td>
+                    <td><button type="button" value="cos(" onclick="dis('cos(')" onkeydown="myFunction(event)" class="btn btn-info">cos()</button></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" value="1" onclick="dis('1')" onkeydown="myFunction(event)" class="btn btn-secondary">1</button></td>
+                    <td><button type="button" value="2" onclick="dis('2')" onkeydown="myFunction(event)" class="btn btn-secondary">2</button></td>
+                    <td><button type="button" value="3" onclick="dis('3')" onkeydown="myFunction(event)" class="btn btn-secondary">3</button></td>
+                    <td><button type="button" value="-" onclick="dis('-')" onkeydown="myFunction(event)" class="btn btn-danger">-</button></td>
+                    <td><button type="button" value="tan(" onclick="dis('tan(')" onkeydown="myFunction(event)" class="btn btn-info">tan()</button></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" value="0" onclick="dis('0')" onkeydown="myFunction(event)" class="btn btn-secondary">0</button></td>
+                    <td><button type="button" value="." onclick="dis('.')" onkeydown="myFunction(event)" class="btn btn-secondary">.</button></td>
+                    <td><button type="button" value=")" onclick="dis(')')" onkeydown="myFunction(event)" class="btn btn-danger">)</button></td>
+                    <td><button type="button" value="+" onclick="dis('+')" onkeydown="myFunction(event)" class="btn btn-danger">+</button></td>
+                    <td><button type="button" id="calculate" onclick="solve()" class="btn btn-success">=</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+         function dis(val) { 
+            document.getElementById("result").value += val 
+        }; 
+
+        function myFunction(event) { 
+            if (event.key == '0' || event.key == '1' 
+                || event.key == '2' || event.key == '3' 
+                || event.key == '4' || event.key == '5' 
+                || event.key == '6' || event.key == '7' 
+                || event.key == '8' || event.key == '9' 
+                || event.key == '+' || event.key == '-' 
+                || event.key == '*' || event.key == '/') 
+                document.getElementById("result").value += event.key;
+        };
+
+        var cal = document.getElementById("calcu"); 
+        cal.onkeyup = function (event) { 
+            if (event.keyCode === 13) { 
+                console.log("Enter"); 
+                let x = document.getElementById("result").value 
+                console.log(x); 
+                solve(); 
+            }
+          }
+
+        function solve() { 
+            let x = document.getElementById("result").value 
+            let y = math.evaluate(x) 
+            document.getElementById("result").value = y 
+            if(x == "")
+            alert("Please fill any input")
+        } 
+
+        function clr(){
+            document.getElementById("result").value = "";
+        };
+
+        function dt(){
+          let m = document.getElementById("main");
+          let btn1 = document.getElementById("b2");
+          let btn2 = document.getElementById("b3");
+
+          m.style.background = "rgb(31, 30, 30)";
+          m.style.color = "white";
+          btn1.style.display = "none";
+          btn2.style.display = "block";
+        }
+
+        function lt(){
+          let m = document.getElementById("main");
+          let btn1 = document.getElementById("b2");
+          let btn2 = document.getElementById("b3");
+
+          m.style.background = "white";
+          m.style.color = "black";
+          btn1.style.display = "block";
+          btn2.style.display = "none";
+        }
+      </script>
+</body>
+</html>
